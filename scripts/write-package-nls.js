@@ -65,4 +65,4 @@ for (const value of viewsWelcome) {
 }
 
 fs.writeJsonSync(path.join(__dirname, '..', 'package.json'), packageJson, { spaces: 2 });
-fs.writeJsonSync(path.join(__dirname, '..', '../package.nls.json'), existing, { spaces: 2 });
+fs.writeJsonSync(path.join(__dirname, '..', 'package.nls.json'), existing, { spaces: 2 });
