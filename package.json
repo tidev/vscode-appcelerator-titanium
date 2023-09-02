@@ -993,6 +993,7 @@
     "commit": "git-cz",
     "compile": "rimraf out/ && tsc -p ./",
     "generate-docs": "node ./scripts/render.js",
+    "generate-l10n": "node ./scripts/write-package-nls.js",
     "lint": "eslint src/ scripts/",
     "release": "npm run generate-docs && cross-env HUSKY=0 semantic-release",
     "test": "cross-env COVERAGE=1 node ./out/test/unit/runTest.js",
