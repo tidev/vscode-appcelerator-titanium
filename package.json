@@ -896,11 +896,11 @@
                     "description": "%titanium.tasks.titanium-package.android.keystore%",
                     "properties": {
                       "alias": {
-                        "description": "Alias for the keystore",
+                        "description": "%titanium.tasks.titanium-package.android.keystore.alias%",
                         "type": "string"
                       },
                       "location": {
-                        "description": "Path of the keystore to be used, must be a full path",
+                        "description": "%titanium.tasks.titanium-package.android.keystore.location%",
                         "type": "string"
                       }
                     }

@@ -81,6 +81,7 @@ jobs:
         run: |
           if [[ `git status --porcelain` ]]; then
             echo "There are l10n strings to be created"
+            echo "Run npm run l10n-generate to create them"
             exit 1
           fi
 
