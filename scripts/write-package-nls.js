@@ -35,23 +35,24 @@ for (const [ key, value ] of Object.entries(debuggers[0].configurationAttributes
 	handleStringEdit(`titanium.debug.${key}`, value, 'description');
 }
 
+function recurseTaskProperties (properties, leading) {
+	for (const [ key, value ] of Object.entries(properties)) {
+		let str = `${leading}.${key}`;
+		handleStringEdit(str, value, 'description');
+
+		if (value.type === 'object' || value.properties) {
+			recurseTaskProperties(value.properties, str);
+		}
+	}
+}
+
 for (let i = 0; i < taskDefinitions.length; i++) {
 	const { type, properties: { titaniumBuild } } = taskDefinitions[i];
 	const leading = `titanium.tasks.${type}`;
 
 	handleStringEdit(`${leading}.titaniumBuild`, titaniumBuild, 'description');
 
-	for (const [ key, value ] of Object.entries(titaniumBuild.properties)) {
-		let str = `${leading}.${key}`;
-		handleStringEdit(str, value, 'description');
-
-		if (value.type === 'object' || value.properties) {
-			for (const [ k, v ] of Object.entries(value.properties)) {
-				str = `${str}.${k}`;
-				handleStringEdit(str, v, 'description');
-			}
-		}
-	}
+	recurseTaskProperties(titaniumBuild.properties, leading);
 }
 
 for (const value of views.titanium) {
