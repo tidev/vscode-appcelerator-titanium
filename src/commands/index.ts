@@ -3,7 +3,7 @@ import * as vscode from 'vscode';
 
 import { ExtensionContainer } from '../container';
 import { Commands } from './common';
-import { GlobalState } from '../constants';
+import { GlobalState, WorkspaceState } from '../constants';
 import { buildApplication } from './buildApp';
 import { buildModule } from './buildModule';
 import { DeviceNode, DistributeNode, OSVerNode, PlatformNode, TargetNode, UpdateNode } from '../explorer/nodes';
@@ -11,7 +11,7 @@ import { sleep } from '../common/utils';
 import { packageApplication } from './packageApp';
 import { packageModule } from './packageModule';
 import { promptForWorkspaceFolder, quickPick } from '../quickpicks';
-import { KeystoreInfo, LogLevel } from '../types/common';
+import { KeystoreInfo, LastBuildState, LogLevel } from '../types/common';
 import { configuration } from '../configuration';
 import { AlloyComponentExtension, AlloyComponentFolder, AlloyComponentType, generateComponent, generateModel } from './alloyGenerate';
 import { debugSessionInformation, DEBUG_SESSION_VALUE } from '../tasks/tasksHelper';
@@ -219,6 +219,28 @@ export function registerCommands (): void {
 
 	registerCommand(Commands.FixEnvironmentIssues, async () => {
 		startup();
+	});
+
+	registerCommand(Commands.Rebuild, async () => {
+		if (ExtensionContainer.context.globalState.get<boolean>(GlobalState.Running)) {
+			await vscode.commands.executeCommand(Commands.StopBuild);
+			await sleep(100);
+		}
+
+		const lastBuildState = ExtensionContainer.context.workspaceState.get<LastBuildState>(WorkspaceState.LastBuildState);
+
+		if (!lastBuildState) {
+			return;
+		}
+
+		const { type, folder } = await promptForWorkspaceFolder({ apps: true, modules: true, placeHolder: 'Please select a project to build' });
+		const node = new DeviceNode('', lastBuildState.platform, lastBuildState.target, lastBuildState?.deviceId, lastBuildState.target);
+
+		if (type === 'app') {
+			return buildApplication(node, folder);
+		} else if (type === 'module') {
+			return buildModule(undefined, folder);
+		}
 	});
 }
 

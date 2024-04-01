@@ -217,6 +217,13 @@
         "description": "%titanium.commands.build.run.description%"
       },
       {
+        "command": "titanium.build.rebuild",
+        "title": "%titanium.commands.build.rebuild.title%",
+        "category": "Titanium",
+        "icon": "$(debug-restart)",
+        "description": "%titanium.commands.build.rebuild.description%"
+      },
+      {
         "command": "titanium.build.debug",
         "title": "%titanium.commands.build.debug.title%",
         "category": "Titanium",
@@ -709,6 +716,11 @@
         {
           "command": "titanium.build.run",
           "when": "view == titanium.view.buildExplorer",
+          "group": "navigation@2"
+        },
+        {
+          "command": "titanium.build.rebuild",
+          "when": "view == titanium.view.buildExplorer && titanium:build:running",
           "group": "navigation@2"
         },
         {
