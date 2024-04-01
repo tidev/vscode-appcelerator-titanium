@@ -38,6 +38,7 @@ export enum Commands {
 	OpenReleaseNotes = 'titanium.updates.openReleaseNotes',
 	OpenUrl = 'titanium.openUrl',
 	Package = 'titanium.package.run',
+	Rebuild = 'titanium.build.rebuild',
 	RefreshExplorer = 'titanium.explorer.refresh',
 	RefreshHelp = 'titanium.helpExplorer.refresh',
 	SelectUpdates = 'titanium.updates.select',
