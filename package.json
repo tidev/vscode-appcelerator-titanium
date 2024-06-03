@@ -1047,7 +1047,7 @@
     "nyc": "^15.1.0",
     "pinst": "^3.0.0",
     "rimraf": "^5.0.5",
-    "semantic-release": "^21.0.1",
+    "semantic-release": "^24.0.0",
     "semantic-release-vsce": "^5.6.4",
     "sinon": "^17.0.1",
     "sinon-chai": "^3.7.0",
