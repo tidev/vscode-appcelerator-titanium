@@ -1030,7 +1030,7 @@
     "@typescript-eslint/eslint-plugin": "^5.58.0",
     "@typescript-eslint/parser": "^5.59.0",
     "@vscode/test-electron": "^2.3.8",
-    "chai": "^4.4.0",
+    "chai": "^4.4.1",
     "chai-as-promised": "^7.1.1",
     "commitizen": "^4.3.0",
     "cross-env": "^7.0.3",
