@@ -1017,7 +1017,7 @@
     "@types/got": "^9.6.12",
     "@types/klaw-sync": "^6.0.1",
     "@types/mocha": "^10.0.1",
-    "@types/ms": "^0.7.31",
+    "@types/ms": "^0.7.34",
     "@types/node": "16.18.14",
     "@types/semver": "^7.3.9",
     "@types/sinon": "^17.0.2",
